@@ -4,19 +4,20 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "5.9.0"
     }
+
     github = {
       source  = "integrations/github"
       version = "6.13.0"
     }
-}
+  }
+
   cloud {
-    
     organization = "motoshare"
 
     workspaces {
       name = "proezi_stage"
     }
-}
+  }
 }
 
 provider "azurerm" {
@@ -29,6 +30,4 @@ provider "azurerm" {
 }
 
 provider "github" {
-  # Configuration options
 }
-
