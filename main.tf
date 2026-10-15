@@ -1,17 +1,33 @@
-resource "azurerm_resource_group" "example" {
-  name     = "rg-devops-demo"
-  location = "Japan East"
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "5.9.0"
+    }
 
-  tags = {
-    Environment = "Dev"
-    ManagedBy   = "Terraform"
+    github = {
+      source  = "integrations/github"
+      version = "6.13.0"
+    }
+  }
+
+  cloud {
+    organization = "motoshare"
+
+    workspaces {
+      name = "proezi_stage"
+    }
   }
 }
 
-output "resource_group_name" {
-  value = azurerm_resource_group.example.name
+provider "azurerm" {
+  features {}
+
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
+  subscription_id = var.subscription_id
 }
 
-output "resource_group_id" {
-  value = azurerm_resource_group.example.id
+provider "github" {
 }
