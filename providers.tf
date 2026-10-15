@@ -14,7 +14,7 @@ terraform {
     organization = "motoshare"
 
     workspaces {
-      name = "proezi_dev"
+      name = "stage"
     }
 }
 }
